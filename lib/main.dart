@@ -54,10 +54,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   Future<void> startAnimation() async {
     await Future.delayed(const Duration(milliseconds:500));
-    startAnimationFirst=false;
-    startAnimationSecond=false;
-    startAnimationThird=false;
-    startAnimationForth=false;
+    // startAnimationFirst=false;
+    // startAnimationSecond=false;
+    // startAnimationThird=false;
+    // startAnimationForth=false;
   }
 
   @override
@@ -139,7 +139,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               child: SizedBox(
                 width: MediaQuery.of(context).size.height/1.5,
                 child: CustomPaint(
-                  painter: OpenPainter(),
+                  // canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/2.7, paint1);
+                  painter: OpenPainter(
+                    MediaQuery.of(context).size.width/1.8,
+                    MediaQuery.of(context).size.width/2.2,
+                    MediaQuery.of(context).size.width/2.45,
+                    ),
                 ),
               )),
           Positioned(
@@ -147,7 +152,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               child: SizedBox(
                 width: MediaQuery.of(context).size.height/1.5,
                  child: CustomPaint(
-                  painter: OpenPainterSecond(),
+    // canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/3.3, paint1);
+                  painter: OpenPainter(
+                    MediaQuery.of(context).size.width/1.8,
+                    MediaQuery.of(context).size.width/2.2,
+                    MediaQuery.of(context).size.width/2.90,
+                  ),
                 ),
               )),
           Positioned(
@@ -155,7 +165,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               child: SizedBox(
                 width: MediaQuery.of(context).size.height/1.5,
                  child: CustomPaint(
-                  painter: OpenPainterThird(),
+                  painter: OpenPainter(
+                  // canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/4.3, paint1);
+                    MediaQuery.of(context).size.width/1.8,
+                    MediaQuery.of(context).size.width/2.2,
+                    MediaQuery.of(context).size.width/3.65,
+                  ),
                 ),
               )),
           Positioned(
@@ -182,13 +197,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           ),
           animatedPosition(key: "firstcardanimajte",isShowText:startAnimationFirst,left: startAnimationFirst?80:70,bottom:startAnimationFirst?MediaQuery.of(context).size.height/1.5:170),
           animatedPosition(key: "secondcardanimate",isShowText:startAnimationSecond,left: startAnimationSecond?80:70,bottom:startAnimationSecond?MediaQuery.of(context).size.height/2.22:100),
-          animatedPosition(key: "thirdcardanimate",isShowText:startAnimationThird,right: startAnimationThird?75:null,left: startAnimationThird?null:70,bottom: startAnimationThird?MediaQuery.of(context).size.height/2.1:30),
-          animatedPosition(key: "forthcardanimate",isShowText:startAnimationForth,right:startAnimationForth?75:null,left: startAnimationForth?null:70,bottom: startAnimationForth?MediaQuery.of(context).size.height/1.3:-50),
+          animatedPosition(key: "thirdcardanimate",isShowText:startAnimationThird,right: startAnimationThird?80:null,left: startAnimationThird?null:70,bottom: startAnimationThird?MediaQuery.of(context).size.height/2.20:30),
+          animatedPosition(key: "forthcardanimate",isShowText:startAnimationForth,right:startAnimationForth?80:null,left: startAnimationForth?null:70,bottom: startAnimationForth?MediaQuery.of(context).size.height/1.29:-50),
           Positioned(
             top: MediaQuery.of(context).size.height/4.5,
             child: Container(
-                    height: 95,
-                    width: 95,
+                    height: 90,
+                    width: 90,
                     decoration: BoxDecoration(
                         color: Colors.deepPurple,
                         boxShadow:const [
@@ -209,7 +224,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     ),
                     // child: const Text("hello")
                   ),
+
           ),
+          Positioned(
+            left: 20,
+              bottom: 20,
+              // top: MediaQuery.of(context).size.height/2,
+              child: Container(
+                // margin: EdgeInsets.all(100.0),
+                decoration:const BoxDecoration(
+                    color: Colors.grey,
+                    shape: BoxShape.circle
+                ),
+                ),
+              ),
         ],
       ),
     );
@@ -227,8 +255,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       child: Row(
         children: [
           Container(
-            height: 35,
-            width: 35,
+            height: 32,
+            width: 32,
             decoration: BoxDecoration(
                 color: Colors.deepPurple,
                 boxShadow:const [
@@ -261,41 +289,19 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 }
 
 class OpenPainter extends CustomPainter {
+  final double offsetDx;
+  final double offsetDy;
+  final double radius;
+  OpenPainter(this.offsetDx,this.offsetDy,this.radius);
+
   @override
   void paint(Canvas canvas, Size size) {
     var paint1 = Paint()
-      ..color = CustomColor.circleBorder
+      ..color = Colors.orange
       ..strokeWidth =1
       ..style = PaintingStyle.stroke;
-    canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/2.7, paint1);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
-
-class OpenPainterSecond extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint1 = Paint()
-      ..color = CustomColor.circleBorder
-      ..strokeWidth =1
-      ..style = PaintingStyle.stroke;
-    canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/3.3, paint1);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}
-
-class OpenPainterThird extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint1 = Paint()
-      ..color = CustomColor.circleBorder
-      ..strokeWidth =1
-      ..style = PaintingStyle.stroke;
-    canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/4.3, paint1);
+    // canvas.drawCircle(Offset(size.width/2,size.width/2.5), size.width/2.7, paint1);
+    canvas.drawCircle(Offset(offsetDx,offsetDy), radius, paint1);
   }
 
   @override
