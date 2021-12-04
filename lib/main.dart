@@ -180,72 +180,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 ),
             ),
           ),
-          AnimatedPositioned(
-            key:const Key('firstcardanimajte'),
-            left: startAnimationFirst?80:70,
-            bottom: startAnimationFirst?MediaQuery.of(context).size.height/1.5:170,
-            curve: Curves.fastLinearToSlowEaseIn,
-            duration:animationDuration,
-            child: AnimatedContainer(
-                    duration:_myDuration,
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        boxShadow:const [
-                          BoxShadow(
-                            color: Colors.deepPurple,
-                            spreadRadius: 1,
-                            blurRadius: 11,
-                          ),
-                        ],
-                        borderRadius:const BorderRadius.only(
-                          topLeft:Radius.circular(55.0),
-                          topRight:Radius.circular(14.0),
-                          bottomLeft:Radius.circular(14.0),
-                          bottomRight:Radius.circular(55.0),
-                        ),
-                        border: Border.all(color: Colors.deepPurple)
-                      // border:Border(top: BorderSide(color: CustomColor.cardBorder,),left:BorderSide(color: CustomColor.cardBorder),right: BorderSide(color: CustomColor.cardBorder))
-                    ),
-                    // child: const Text("hello")
-                  ),
-          ),
-          AnimatedPositioned(
-            key:const Key('secondcardanimate'),
-            left: startAnimationSecond?80:70,
-            bottom: startAnimationSecond?MediaQuery.of(context).size.height/2.22:100,
-            curve: Curves.fastLinearToSlowEaseIn,
-            duration:animationDuration,
-            child: Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        boxShadow:const [
-                          BoxShadow(
-                            color: Colors.deepPurple,
-                            spreadRadius: 1,
-                            blurRadius: 11,
-                          ),
-                        ],
-                        borderRadius:const BorderRadius.only(
-                          topLeft:Radius.circular(55.0),
-                          topRight:Radius.circular(14.0),
-                          bottomLeft:Radius.circular(14.0),
-                          bottomRight:Radius.circular(55.0),
-                        ),
-                        border: Border.all(color: Colors.deepPurple)
-                      // border:Border(top: BorderSide(color: CustomColor.cardBorder,),left:BorderSide(color: CustomColor.cardBorder),right: BorderSide(color: CustomColor.cardBorder))
-                    ),
-                    // child: const Text("hello")
-                  ),
-          ),
-          animatedPosition(key: "thirdcardanimate",right: startAnimationThird?75:null,left: startAnimationThird?null:70,bottom: startAnimationThird?MediaQuery.of(context).size.height/2.1:30),
-          animatedPosition(key: "forthcardanimate",right:startAnimationForth?75:null,left: startAnimationForth?null:70,bottom: startAnimationForth?MediaQuery.of(context).size.height/1.3:-50),
+          animatedPosition(key: "firstcardanimajte",isShowText:startAnimationFirst,left: startAnimationFirst?80:70,bottom:startAnimationFirst?MediaQuery.of(context).size.height/1.5:170),
+          animatedPosition(key: "secondcardanimate",isShowText:startAnimationSecond,left: startAnimationSecond?80:70,bottom:startAnimationSecond?MediaQuery.of(context).size.height/2.22:100),
+          animatedPosition(key: "thirdcardanimate",isShowText:startAnimationThird,right: startAnimationThird?75:null,left: startAnimationThird?null:70,bottom: startAnimationThird?MediaQuery.of(context).size.height/2.1:30),
+          animatedPosition(key: "forthcardanimate",isShowText:startAnimationForth,right:startAnimationForth?75:null,left: startAnimationForth?null:70,bottom: startAnimationForth?MediaQuery.of(context).size.height/1.3:-50),
           Positioned(
             top: MediaQuery.of(context).size.height/4.5,
-            // bottom: 220,
             child: Container(
                     height: 95,
                     width: 95,
@@ -275,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget animatedPosition({required String key, double? left, double? right, double? top, double? bottom}){
+  Widget animatedPosition({required String key,required bool isShowText, double? left, double? right, double? top, double? bottom}){
     return AnimatedPositioned(
       key: Key(key),
       left: left,
@@ -284,28 +224,37 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       bottom: bottom,
       curve: Curves.fastLinearToSlowEaseIn,
       duration:animationDuration,
-      child: Container(
-        height: 35,
-        width: 35,
-        decoration: BoxDecoration(
-            color: Colors.deepPurple,
-            boxShadow:const [
-              BoxShadow(
+      child: Row(
+        children: [
+          Container(
+            height: 35,
+            width: 35,
+            decoration: BoxDecoration(
                 color: Colors.deepPurple,
-                spreadRadius: 1,
-                blurRadius: 11,
-              ),
-            ],
-            borderRadius:const BorderRadius.only(
-              topLeft:Radius.circular(55.0),
-              topRight:Radius.circular(14.0),
-              bottomLeft:Radius.circular(14.0),
-              bottomRight:Radius.circular(55.0),
+                boxShadow:const [
+                  BoxShadow(
+                    color: Colors.deepPurple,
+                    spreadRadius: 1,
+                    blurRadius: 11,
+                  ),
+                ],
+                borderRadius:const BorderRadius.only(
+                  topLeft:Radius.circular(55.0),
+                  topRight:Radius.circular(14.0),
+                  bottomLeft:Radius.circular(14.0),
+                  bottomRight:Radius.circular(55.0),
+                ),
+                border: Border.all(color: Colors.deepPurple)
+              // border:Border(top: BorderSide(color: CustomColor.cardBorder,),left:BorderSide(color: CustomColor.cardBorder),right: BorderSide(color: CustomColor.cardBorder))
             ),
-            border: Border.all(color: Colors.deepPurple)
-          // border:Border(top: BorderSide(color: CustomColor.cardBorder,),left:BorderSide(color: CustomColor.cardBorder),right: BorderSide(color: CustomColor.cardBorder))
-        ),
-        // child: const Text("hello")
+            // child: const Text("hello")
+          ),
+          Visibility(
+            visible: !isShowText,
+            child: Container(margin:const EdgeInsets.only(left: 40),
+            child: const Text("test",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w800,color: Colors.white),),),
+          )
+        ],
       ),
     );
   }
